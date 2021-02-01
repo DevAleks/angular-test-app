@@ -55,10 +55,13 @@ export class PeopleFormComponent implements OnInit {
     }
 
     this.peopleService.createNewContact(newContact);
-//    this.form.reset();    
+    this.form.reset();    
     this.location.back();
+  }
 
-
+  cancel() {
+    this.form.reset();    
+    this.location.back();    
   }
 
 }
