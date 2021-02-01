@@ -17,12 +17,7 @@ export class PeopleService {
       .get<People[]>("/assets/data.json")
       .pipe(
         tap(
-          data => { 
-            data.push(...this.contacts);
-            for (let i = 0; i < data.length; i++) {
-              console.log(`data[${i}].name: ${data[i].name} `);
-            }
-          }
+          data => data.push(...this.contacts)          
         )
       )      
   }
