@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Bill Gates",
+        "phone": "+1 917 123 4566"
+    },
+    {
+        "name": "Sergei Brin",
+        "phone": "+1 917 321 6654"
+    },
+    {
+        "name": "Mark Zuckerberg",
+        "phone": "+1 917 456 9999"
+    }
+]
