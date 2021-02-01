@@ -1,0 +1,30 @@
+<p>people-list works!</p>
+
+<div class="body">
+
+    <div class="body__wrap">
+
+        <div class="heading">
+            <div class="heading__text">
+                Contacts
+            </div>
+            <div class="heading__btn">
+                <a class="add-btn" routerLink="/form">
+                    <div class="add-btn__icon--plus"></div>
+                    <div>
+                        Add
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="contacts">
+            <div class="contacts__list-card" *ngFor="let man of people">
+                <div class="contacts__list-name">{{man.name}}</div>
+                <div class="contacts__list-phone">{{man.phone}}</div>
+            </div>   
+        </div>
+
+    </div>
+    
+</div> 

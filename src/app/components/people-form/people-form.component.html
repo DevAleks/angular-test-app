@@ -1,0 +1,110 @@
+<div class="body">
+
+    <div class="body__wrap">
+
+        <div class="heading">
+            <div class="heading__text">Add contact</div>
+        </div>
+
+        <div class="form">
+            <form class="form__body" [formGroup]="form" (ngSubmit)="submit()">
+
+                <div class="form-row" [ngClass]="{invalid: form.get('name').touched && form.get('name').invalid}">
+                    <input type="text" formControlName="name" placeholder="Name *">         
+                    <div class="form-row__validation" *ngIf="form.get('name').invalid && form.get('name').touched">
+                        <small *ngIf="form.get('name').errors?.required">
+                            Please, enter a Name
+                        </small>
+                        <small *ngIf="form.get('name').errors?.pattern">
+                            Invalid characters used<br>
+                        </small>
+                        <small *ngIf="form.get('name').errors?.minlength">
+                            Must be at least 
+                            {{form.get('name').errors.minlength.requiredLength}}
+                            characters, currently entered only
+                            {{form.get('name').errors.minlength.actualLength}}<br> 
+                        </small>
+                        <small *ngIf="form.get('name').errors?.maxlength">
+                            Must be no more than
+                            {{form.get('name').errors.maxlength.requiredLength}}
+                            characters, currently entered more than
+                            {{form.get('name').errors.maxlength.actualLength}}<br>               
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-row" [ngClass]="{invalid: form.get('phone').touched && form.get('phone').invalid}">   
+                    <input type="text" formControlName="phone" placeholder="Phone"> 
+                    <div class="form-row__validation" *ngIf="form.get('phone').invalid && form.get('phone').touched">
+                        <small *ngIf="form.get('phone').errors.pattern">
+                            Invalid characters used<br>
+                        </small>
+                        <small *ngIf="form.get('phone').errors.minlength">
+                            Must be at least 
+                            {{form.get('phone').errors.minlength.requiredLength}}
+                            characters, currently entered only
+                            {{form.get('phone').errors.minlength.actualLength}}<br>
+                        </small>
+                        <small *ngIf="form.get('phone').errors.maxlength">
+                            Must be no more than
+                            {{form.get('phone').errors.maxlength.requiredLength}}
+                            characters, currently entered more than 
+                            {{form.get('phone').errors.maxlength.actualLength}}<br>                
+                        </small> 
+                    </div>
+                </div>
+
+                <div class="form-row" [ngClass]="{invalid: form.get('text').touched && form.get('text').invalid}">   
+                    <label class="form-row__label">Text:</label>
+                    <textarea 
+                        type="text" 
+                        class="forms__textarea" 
+                        formControlName="text"
+                        #textSymbols 
+                    ></textarea>
+                    <br>
+                    <small class="forms__counter">Осталось символов: {{500 - textSymbols.value.length}}</small>
+                    <br>
+                    <div class="form-row__validation" *ngIf="form.get('text').invalid && form.get('text').touched">
+                        <small *ngIf="form.get('text').errors.pattern">
+                            Invalid characters used<br>
+                        </small>
+                        <small *ngIf="form.get('text').errors.maxlength">
+                            Must be no more than
+                            {{form.get('text').errors.maxlength.requiredLength}}
+                            characters, currently entered more than 
+                            {{form.get('text').errors.maxlength.actualLength}}<br>                
+                        </small> 
+                    </div>
+                </div>
+
+                <div class="form-row" [ngClass]="{invalid: form.get('link').touched && form.get('link').invalid}">   
+                    <label class="form-row__label">Link:</label>
+                    <input type="text" formControlName="link" #linkSymbols>
+                    <br>
+                    <small class="forms__counter">Осталось символов: {{1024 - linkSymbols.value.length}}</small>
+                    <br>
+                    <div class="form-row__validation" *ngIf="form.get('link').invalid && form.get('link').touched">
+                        <small *ngIf="form.get('link').errors.pattern">
+                            Invalid format of URL<br>
+                        </small>
+                        <small *ngIf="form.get('link').errors.maxlength">
+                            Must be no more than
+                            {{form.get('link').errors.maxlength.requiredLength}}
+                            characters, currently entered more than 
+                            {{form.get('link').errors.maxlength.actualLength}}<br>                
+                        </small> 
+                    </div>
+                </div>
+
+                <button class="btn btn--dark btn--short" type="submit" [disabled]="form.invalid">
+                    Create
+                </button>    
+
+            </form>
+        </div> 
+
+    </div>
+    
+</div> 
+
