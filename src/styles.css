@@ -115,4 +115,7 @@ body {
   justify-content: flex-end;  
 }
 
+.invalid {
+  border-color: red;
+}
 /* Custom */

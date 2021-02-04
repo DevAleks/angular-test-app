@@ -20,9 +20,12 @@
 
         <div class="contacts">
             <div class="contacts__list-card" *ngFor="let man of people">
-                <div class="contacts__list-name">{{man.name}}</div>
+                <div class="contacts__list-name">{{man.name}} {{man.surname}}</div>
                 <div class="contacts__list-phone">{{man.phone}}</div>
-            </div>   
+                <div *ngIf="man.newFields">
+                    123
+                </div>
+            </div>            
         </div>
 
     </div>

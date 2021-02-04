@@ -33,6 +33,27 @@
                     </div>
                 </div>
 
+                <div class="form__item" [ngClass]="{invalid: form.get('surname').touched && form.get('surname').invalid}">
+                    <input class="form__input" type="text" formControlName="surname" placeholder="Surname">         
+                    <div class="form__validation" *ngIf="form.get('surname').invalid && form.get('surname').touched">
+                        <small *ngIf="form.get('surname').errors?.pattern">
+                            Invalid characters used<br>
+                        </small>
+                        <small *ngIf="form.get('surname').errors?.minlength">
+                            Must be at least 
+                            {{form.get('surname').errors.minlength.requiredLength}}
+                            characters, currently entered only
+                            {{form.get('surname').errors.minlength.actualLength}}<br> 
+                        </small>
+                        <small *ngIf="form.get('surname').errors?.maxlength">
+                            Must be no more than
+                            {{form.get('surname').errors.maxlength.requiredLength}}
+                            characters, currently entered more than
+                            {{form.get('surname').errors.maxlength.actualLength}}<br>               
+                        </small>
+                    </div>
+                </div>
+
                 <div class="form__item" [ngClass]="{invalid: form.get('phone').touched && form.get('phone').invalid}">   
                     <input class="form__input" type="text" formControlName="phone" placeholder="Phone"> 
                     <div class="form__validation" *ngIf="form.get('phone').invalid && form.get('phone').touched">
@@ -53,6 +74,54 @@
                         </small> 
                     </div>
                 </div>
+
+                <div
+                    formArrayName="newFields"
+                    *ngFor="let item of form.get('newFields')['controls']; let i = index;"
+                >
+                    <div [formGroupName]="i">
+
+                        <div class="form__item" [ngClass]="{invalid: form.get('newFields').controls[i].controls.phone.touched && form.get('newFields').controls[i].controls.phone.invalid}">   
+                            <input class="form__input" type="text" formControlName="phone" placeholder="Phone"> 
+                            <div class="form__validation" *ngIf="form.get('newFields').controls[i].controls.phone.invalid && form.get('newFields').controls[i].controls.phone.touched">
+                                <small *ngIf="form.get('newFields').controls[i].controls.phone.errors.pattern">
+                                    Invalid characters used<br>
+                                </small>
+                                <small *ngIf="form.get('newFields').controls[i].controls.phone.errors.minlength">
+                                    Must be at least 
+                                    {{form.get('newFields').controls[i].controls.phone.errors.minlength.requiredLength}}
+                                    characters, currently entered only
+                                    {{form.get('newFields').controls[i].controls.phone.errors.minlength.actualLength}}<br>
+                                </small>
+                                <small *ngIf="form.get('newFields').controls[i].controls.phone.errors.maxlength">
+                                    Must be no more than
+                                    {{form.get('newFields').controls[i].controls.phone.errors.maxlength.requiredLength}}
+                                    characters, currently entered more than 
+                                    {{form.get('newFields').controls[i].controls.phone.errors.maxlength.actualLength}}<br>                
+                                </small> 
+                            </div>
+                        </div>
+
+                        <div class="form__item">   
+                            <input class="form__input" type="text" formControlName="link" placeholder="Link"> <!-- Без валидации в шаблоне, экономлю время -->
+                        </div>
+
+                        <div class="form__item">   
+                            <input class="form__input" type="text" formControlName="text" placeholder="Text"> <!-- Без валидации в шаблоне, экономлю время -->
+                        </div> 
+                        
+                    </div>
+                </div>
+
+
+
+                    <button class="add-btn" type="submit" (click)="addNewFields()">
+                        <div class="add-btn__icon--plus"></div>
+                        <div>
+                            Add new field
+                        </div>
+                    </button>
+ 
 
                 <div class="bottom">
                     <div class="bottom__left">
